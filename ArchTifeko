@@ -1,2 +1,10 @@
 #!/usr/bin/bash
 
+#pacman -Sy git dialog
+
+cd "$HOME" || exit
+
+#git clone https://github.com/Tifeko/archTifeko.git
+
+cd archTifeko/scripts || exit
+./0_preinstall
