@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+pacman -Sy dialog
+
+dialog --title "ArchTifeko" --yesno "Do you have your disk mounted at /mnt?" 0 0 || exit
+
+pacstrap -K /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
+hwclock --systohc
+rm /etc/locale.gen
+touch /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+touch /etc/locale.conf 
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
