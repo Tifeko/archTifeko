@@ -1,11 +1,17 @@
 #!/usr/bin/bash
 
-dialog --title "ArchTifeko" --yesno "Do you have your disks mounted at /mnt?" 0 0 || exit
-
 NEWHOSTNAME=$( dialog --title "ArchTifeko" --inputbox "Type your new hostname" 0 0 "archlinux" 3>&1 1>&2 2>&3 3>&- ); clear
 NEWUSERNAME=$( dialog --title "ArchTifeko" --inputbox "Type your new username" 0 0 3>&1 1>&2 2>&3 3>&- ); clear
 NEWPASSWORD=$( dialog --title "ArchTifeko" --insecure --passwordbox "Type your new password" 0 0 3>&1 1>&2 2>&3 3>&- ); clear
+PROFILE=$( dialog --title "ArchTifeko" --menu "Select your profile" 0 0 0 \
+            1 "dwm-Tifeko" \
+            2 "Gnome"      \
+            3 "KDE Plasma" \
+            4 "Minimal"    \
+            3>&1 1>&2 2>&3 3>&- ); clear
 
+mkdir -pv /mnt/root/archTifeko/options
 echo "$NEWHOSTNAME" >> "$HOME"/archTifeko/options/hostname
 echo "$NEWUSERNAME" >> "$HOME"/archTifeko/options/username
 echo "$NEWPASSWORD" >> "$HOME"/archTifeko/options/password
+echo "$PROFILE" >> /mnt/root/archTifeko/options/profile

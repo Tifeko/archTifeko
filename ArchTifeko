@@ -6,5 +6,8 @@ cd "$HOME" || exit
 
 #git clone https://github.com/Tifeko/archTifeko.git
 
+dialog --title "ArchTifeko" --yesno "Do you have your disks mounted at /mnt?" 0 0 || exit
+
 cd archTifeko/scripts || exit
 ./0_preinstall
+./1_installwithoutchroot
