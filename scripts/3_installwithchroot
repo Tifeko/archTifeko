@@ -1,0 +1,38 @@
+#!/usr/bin/bash
+
+TIMEZONE=$( cat /root/archTifeko/options/timezone )
+NEWHOSTNAME=$( cat /root/archTifeko/options/hostname )
+NEWUSERNAME=$( cat /root/archTifeko/options/username )
+NEWPASSWORD=$( cat /root/archTifeko/options/password )
+DRIVE=$( cat /root/archTifeko/options/drive )
+
+ln -sf "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
+hwclock --systohc
+rm /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "$NEWHOSTNAME" >> /etc/hostname
+
+proc_type=$(lscpu)
+if grep -E "GenuineIntel" <<< ${proc_type}; then
+    echo "Installing Intel microcode"
+    pacman -S --noconfirm --needed intel-ucode
+    proc_ucode=intel-ucode.img
+elif grep -E "AuthenticAMD" <<< ${proc_type}; then
+    echo "Installing AMD microcode"
+    pacman -S --noconfirm --needed amd-ucode
+    proc_ucode=amd-ucode.img
+fi
+
+groupadd libvirt
+useradd -m -G wheel,libvirt -s /bin/bash "$NEWUSERNAME"
+echo "$NEWUSERNAME:$NEWPASSWORD" | chpasswd
+
+grubeufiinstall() {
+    pacman -S --needed --noconfirm efibootmgr
+    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+}
+
+[ -d /sys/firmware/efi ] && grubeufiinstall || grub-install --target=i386-pc "$DRIVE"
+grub-mkconfig -o /boot/grub/grub.cfg

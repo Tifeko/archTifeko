@@ -1,3 +1,4 @@
 #!/usr/bin/bash
 
-pacstrap -K /mnt base linux linux-firmware NetworkManager 
+pacstrap -K /mnt base linux linux-firmware NetworkManager sudo bash dhclient grub
+genfstab -U /mnt >> /mnt/etc/fstab
