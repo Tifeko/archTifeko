@@ -3,5 +3,5 @@
 ### Run it using:
 
 ```
-bash <(curl -L https://raw.githubusercontent.com/Tifeko/archTifeko/main/archTifeko)
+bash <(curl -L https://raw.githubusercontent.com/Tifeko/archTifeko/main/ArchTifeko)
 ```
