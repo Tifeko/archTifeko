@@ -18,7 +18,6 @@ else
 fi
 dialog --title "ArchTifeko" --yesno "Do you want to install mybash" 0 0 && MYBASH=1 || MYBASH=0
 dialog --title "ArchTifeko" --yesno "Do you want to enable multilib" 0 0 && MULTILIB=1 || MULTILIB=0
-DRIVE=$( dialog --title "ArchTifeko" --inputbox "which device does the bootloader has to get installed on?" 0 0 3>&1 1>&2 2>&3 3>&- ); clear
 
 mkdir -pv /mnt/root/archTifeko/options
 echo "$NEWHOSTNAME" >> /mnt/root/archTifeko/options/hostname
@@ -27,7 +26,6 @@ echo "$NEWPASSWORD" >> /mnt/root/archTifeko/options/password
 echo "$PROFILE" >> /mnt/root/archTifeko/options/profile
 echo "$NEWTIMEZONE" >> /mnt/root/archTifeko/options/timezone
 echo "$YAY" >> /mnt/root/archTifeko/options/yay
-echo "$DRIVE" >> /mnt/root/archTifeko/options/drive
 echo "$PACKAGES" >> /mnt/root/archTifeko/options/packages
 echo "$MYBASH" >> /mnt/root/archTifeko/options/mybash
 echo "$MULTILIB" >> /mnt/root/archTifeko/options/multilib

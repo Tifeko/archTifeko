@@ -4,7 +4,6 @@ TIMEZONE=$( cat /root/archTifeko/options/timezone )
 NEWHOSTNAME=$( cat /root/archTifeko/options/hostname )
 NEWUSERNAME=$( cat /root/archTifeko/options/username )
 NEWPASSWORD=$( cat /root/archTifeko/options/password )
-DRIVE=$( cat /root/archTifeko/options/drive )
 MULTILIB=$( cat /root/archTifeko/options/multilib )
 
 ln -sf "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
@@ -36,7 +35,7 @@ grubeufiinstall() {
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 }
 
-[ -d /sys/firmware/efi ] && grubeufiinstall || grub-install --target=i386-pc "$DRIVE"
+[ -d /sys/firmware/efi ] && grubeufiinstall || grub-install --target=i386-pc "$( df --output=source /boot | grep "/dev/*")"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo '%sudo  ALL=(ALL:ALL) ALL' >> /etc/sudoers
