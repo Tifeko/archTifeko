@@ -25,7 +25,8 @@ elif grep -E "AuthenticAMD" <<< ${proc_type}; then
     proc_ucode=amd-ucode.img
 fi
 
-groupadd libvirt,sudo
+groupadd libvirt
+groupadd sudo
 useradd -m -G wheel,libvirt -s /bin/bash "$NEWUSERNAME"
 echo "$NEWUSERNAME:$NEWPASSWORD" | chpasswd
 
