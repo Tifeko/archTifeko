@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 
-pacstrap -K /mnt base linux linux-firmware networkmanager sudo bash dhclient grub git base-devel curl grep
+pacstrap -K /mnt base linux linux-firmware networkmanager sudo bash dhclient grub git base-devel curl grep lsb-release
 genfstab -U /mnt >> /mnt/etc/fstab
