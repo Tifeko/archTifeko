@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-PROFILE=$( cat /mnt/root/archTifeko/options/profile )
-PACKAGES=$( cat /mnt/root/archTifeko/options/packages )
-YAY=$( cat /mnt/root/archTifeko/options/yay )
-MYBASH=$( cat /mnt/root/archTifeko/options/mybash )
+PROFILE=$( cat /root/archTifeko/options/profile )
+PACKAGES=$( cat /root/archTifeko/options/packages )
+YAY=$( cat /root/archTifeko/options/yay )
+MYBASH=$( cat /root/archTifeko/options/mybash )
 
 cd "$HOME" || exit
 if [ "$PROFILE" = "1" ]; then
