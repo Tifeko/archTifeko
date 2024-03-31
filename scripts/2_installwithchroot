@@ -5,6 +5,7 @@ NEWHOSTNAME=$( cat /root/archTifeko/options/hostname )
 NEWUSERNAME=$( cat /root/archTifeko/options/username )
 NEWPASSWORD=$( cat /root/archTifeko/options/password )
 DRIVE=$( cat /root/archTifeko/options/drive )
+MULTILIB=$( cat /root/archTifeko/options/multilib )
 
 ln -sf "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
 hwclock --systohc
@@ -39,3 +40,8 @@ grubeufiinstall() {
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo '%sudo  ALL=(ALL:ALL) ALL' >> /etc/sudoers
+
+if [ "$MULTILIB" = "1" ]; then
+    echo "[multilib]" >> /etc/pacman.conf
+    echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+fi
