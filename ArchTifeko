@@ -11,5 +11,5 @@ dialog --title "ArchTifeko" --yesno "Do you have your disks mounted at /mnt?" 0 
 cd archTifeko/scripts || exit
 "$HOME"/archTifeko/scripts/0_preinstall
 "$HOME"/archTifeko/scripts/1_installwithoutchroot
-cp "$HOME"/archTifeko/scripts/1_installwithchroot /mnt/root/3_installwithchroot
-arch-chroot /mnt sh /root/3_installwithchroot
+cp "$HOME"/archTifeko/scripts/2_installwithchroot /mnt/root/2_installwithchroot
+arch-chroot /mnt sh /root/2_installwithchroot
