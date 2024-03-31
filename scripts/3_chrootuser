@@ -27,7 +27,7 @@ if [ "$YAY" = "1" ]; then
 fi
 
 if [ "$PACKAGES" = "1" ]; then
-    yay -S --needed --noconfirm github-cli librewolf-bin vesktop-bin spotify-launcher kitty virt-manager qemu-full helix prismlauncher-qt5-bin thunderbird visual-studio-code-bin flatpak btop steam 
+    yay -S --needed --noconfirm github-cli librewolf-bin vesktop-bin spotify-launcher kitty virt-manager qemu-full helix prismlauncher-qt5-bin thunderbird visual-studio-code-bin flatpak btop steam lxappearance
 fi
 
 cd "$HOME" || exit
