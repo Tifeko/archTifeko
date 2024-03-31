@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-pacman -Sy git dialog
+pacman -Sy --needed --noconfirm git dialog
 
 cd "$HOME" || exit
 
@@ -9,7 +9,7 @@ git clone https://github.com/Tifeko/archTifeko.git
 dialog --title "ArchTifeko" --yesno "Do you have your disks mounted at /mnt?" 0 0 || exit
 
 cd archTifeko/scripts || exit
-"$HOME"/ArchTifeko/scripts/0_preinstall
-"$HOME"/ArchTifeko/scripts/1_installwithoutchroot
-cp "$HOME"/ArchTifeko/script/1_installwithchroot /mnt/root/3_installwithchroot
+"$HOME"/archTifeko/scripts/0_preinstall
+"$HOME"/archTifeko/scripts/1_installwithoutchroot
+cp "$HOME"/archTifeko/script/1_installwithchroot /mnt/root/3_installwithchroot
 arch-chroot /mnt sh /root/3_installwithchroot
