@@ -7,6 +7,7 @@ MYBASH=$( cat /root/archTifeko/options/mybash )
 
 cd "$HOME" || exit
 if [ "$PROFILE" = "1" ]; then
+    sudo pacman -S --needed --noconfirm lsb-release
     git clone https://github.com/Tifeko/dwm-Tifeko.git
     cd dwm-Tifeko || exit
     ./archsetup
