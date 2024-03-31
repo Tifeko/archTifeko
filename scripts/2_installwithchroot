@@ -52,4 +52,6 @@ if [ "$MULTILIB" = "1" ]; then
     echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 fi
 
-systemctl enable Networkmanager.service
+systemctl enable NetworkManager.service
+
+pacman -Syu
