@@ -27,7 +27,7 @@ fi
 
 groupadd libvirt
 groupadd sudo
-useradd -m -G wheel,libvirt -s /bin/bash "$NEWUSERNAME"
+useradd -m -G wheel,libvirt,sudo -s /bin/bash "$NEWUSERNAME"
 echo "$NEWUSERNAME:$NEWPASSWORD" | chpasswd
 
 grubeufiinstall() {
