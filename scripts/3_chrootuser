@@ -1,0 +1,37 @@
+#!/usr/bin/bash
+
+PROFILE=$( cat /mnt/root/archTifeko/options/profile )
+PACKAGES=$( cat /mnt/root/archTifeko/options/packages )
+YAY=$( cat /mnt/root/archTifeko/options/yay )
+MYBASH=$( cat /mnt/root/archTifeko/options/mybash )
+
+cd "$HOME" || exit
+if [ "$PROFILE" = "1" ]; then
+    git clone https://github.com/Tifeko/dwm-Tifeko.git
+    cd dwm-Tifeko || exit
+    ./archsetup
+elif [ "$PROFILE" = "2" ]; then
+    sudo pacman -S --needed --noconfirm gnome
+    sudo systemctl enable gdm
+elif [ "$PROFILE" = "3" ]; then
+    sudo pacman -S --needed --noconfirm plasma
+    sudo systemctl enable sddm
+fi
+
+cd "$HOME" || exit 
+if [ "$YAY" = "1" ]; then
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin || exit
+    makepkg -si --noconfirm
+fi
+
+if [ "$PACKAGES" = "1" ]; then
+    yay -S --needed --noconfirm github-cli librewolf-bin vesktop-bin spotify-launcher kitty virt-manager qemu-full helix prismlauncher-qt5-bin thunderbird visual-studio-code-bin flatpak btop steam 
+fi
+
+cd "$HOME" || exit
+if [ "$MYBASH" = "1" ]; then
+    git clone https://github.com/Tifeko/mybash.git
+    cd mybash || exit
+    ./setup-arch.sh
+fi

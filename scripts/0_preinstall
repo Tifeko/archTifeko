@@ -11,6 +11,12 @@ PROFILE=$( dialog --title "ArchTifeko" --menu "Select your profile" 0 0 0 \
             3 "KDE Plasma" \
             4 "Minimal"    \
             3>&1 1>&2 2>&3 3>&- ); clear
+if [ "$YAY" = "1" ]; then
+    dialog --title "ArchTifeko" --yesno "Do you want to install my packages?" 0 0 && PACKAGES=1 || PACKAGES=0
+else
+    PACKAGES=0
+fi
+dialog --title "ArchTIfeko" --yesno "Do you want to install mybash" 0 0 && MYBASH=1 || MYBASH=0
 DRIVE=$( dialog --title "ArchTifeko" --inputbox "which device does the bootloader has to get installed on?" 0 0 3>&1 1>&2 2>&3 3>&- ); clear
 
 mkdir -pv /mnt/root/archTifeko/options
@@ -21,3 +27,5 @@ echo "$PROFILE" >> /mnt/root/archTifeko/options/profile
 echo "$NEWTIMEZONE" >> /mnt/root/archTifeko/options/timezone
 echo "$YAY" >> /mnt/root/archTifeko/options/yay
 echo "$DRIVE" >> /mnt/root/archTifeko/options/drive
+echo "$PACKAGES" >> /mnt/root/archTifeko/options/packages
+echo "$MYBASH" >> /mnt/root/archTifeko/options/mybash

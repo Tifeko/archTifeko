@@ -13,3 +13,6 @@ cd archTifeko/scripts || exit
 "$HOME"/archTifeko/scripts/1_installwithoutchroot
 cp "$HOME"/archTifeko/scripts/2_installwithchroot /mnt/root/2_installwithchroot
 arch-chroot /mnt sh /root/2_installwithchroot
+cp "$HOME"/archTifeko/scripts/3_chrootuser /mnt/root/3_chrootuser
+NEWUSERNAME=$( cat /mnt/root/archTifeko/options/username )
+arch-chroot /mnt "runuser -U $NEWUSERNAME -- sh /root/3_chrootuser"
