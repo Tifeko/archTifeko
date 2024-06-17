@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pacman -Sy --needed --noconfirm git dialog
+pacman -Sy --needed --noconfirm git
 
 cd "$HOME" || exit
 
